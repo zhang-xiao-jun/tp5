@@ -1,0 +1,27 @@
+[Sun Dec  2 00:33:06 2018] PHP Warning:  PHP Startup: Unable to load dynamic library 'curl.so' (tried: /usr/lib/php/20170718/curl.so (/usr/lib/php/20170718/curl.so: symbol curl_pushheader_bynum version CURL_OPENSSL_3 not defined in file libcurl.so.4 with link time reference), /usr/lib/php/20170718/curl.so.so (/usr/lib/php/20170718/curl.so.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[Sun Dec  2 00:33:21 2018] 127.0.0.1:56904 [200]: /
+[Sun Dec  2 00:33:48 2018] 127.0.0.1:56922 [200]: /
+[Sun Dec  2 00:33:49 2018] 127.0.0.1:56926 [200]: /
+[Sun Dec  2 00:40:00 2018] 127.0.0.1:57272 [200]: /
+[Sun Dec  2 14:39:16 2018] 127.0.0.1:57946 [500]: /
+[Sun Dec  2 14:39:20 2018] 127.0.0.1:57950 [404]: /index.php
+[Sun Dec  2 14:40:00 2018] 127.0.0.1:57966 [404]: /index.php
+[Sun Dec  2 14:40:11 2018] 127.0.0.1:57976 [404]: /index.php/index/Index/index
+[Sun Dec  2 14:40:25 2018] PHP Fatal error:  Class 'app\index\controller\Controller' not found in /var/www/html/tp5/application/index/controller/Index.php on line 4
+[Sun Dec  2 14:40:25 2018] 127.0.0.1:57984 [500]: / - Class 'app\index\controller\Controller' not found in /var/www/html/tp5/application/index/controller/Index.php on line 4
+[Sun Dec  2 14:41:51 2018] PHP Warning:  PHP Startup: Unable to load dynamic library 'curl.so' (tried: /usr/lib/php/20170718/curl.so (/usr/lib/php/20170718/curl.so: symbol curl_pushheader_bynum version CURL_OPENSSL_3 not defined in file libcurl.so.4 with link time reference), /usr/lib/php/20170718/curl.so.so (/usr/lib/php/20170718/curl.so.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[Sun Dec  2 14:41:51 2018] Failed to listen on localhost:8181 (reason: Address already in use)
+[Sun Dec  2 14:42:10 2018] PHP Fatal error:  Class 'app\index\controller\Controller' not found in /var/www/html/tp5/application/index/controller/Index.php on line 4
+[Sun Dec  2 14:42:10 2018] 127.0.0.1:58122 [500]: / - Class 'app\index\controller\Controller' not found in /var/www/html/tp5/application/index/controller/Index.php on line 4
+[Sun Dec  2 14:42:24 2018] PHP Fatal error:  Class 'app\index\controller\Controller' not found in /var/www/html/tp5/application/index/controller/Index.php on line 4
+[Sun Dec  2 14:42:24 2018] 127.0.0.1:58130 [500]: / - Class 'app\index\controller\Controller' not found in /var/www/html/tp5/application/index/controller/Index.php on line 4
+[Sun Dec  2 14:42:27 2018] PHP Fatal error:  Class 'app\index\controller\Controller' not found in /var/www/html/tp5/application/index/controller/Index.php on line 4
+[Sun Dec  2 14:42:27 2018] 127.0.0.1:58134 [500]: / - Class 'app\index\controller\Controller' not found in /var/www/html/tp5/application/index/controller/Index.php on line 4
+[Sun Dec  2 14:42:35 2018] 127.0.0.1:58138 [404]: /index.php
+[Sun Dec  2 14:42:50 2018] PHP Fatal error:  Class 'app\index\controller\Controller' not found in /var/www/html/tp5/application/index/controller/Index.php on line 4
+[Sun Dec  2 14:42:50 2018] 127.0.0.1:58154 [500]: / - Class 'app\index\controller\Controller' not found in /var/www/html/tp5/application/index/controller/Index.php on line 4
+[Sun Dec  2 14:42:56 2018] PHP Fatal error:  Class 'app\index\controller\Controller' not found in /var/www/html/tp5/application/index/controller/Index.php on line 4
+[Sun Dec  2 14:42:56 2018] 127.0.0.1:58158 [500]: / - Class 'app\index\controller\Controller' not found in /var/www/html/tp5/application/index/controller/Index.php on line 4
+[Sun Dec  2 15:00:19 2018] 127.0.0.1:38586 [500]: /
+[Sun Dec  2 15:00:56 2018] 127.0.0.1:38906 [200]: /
+[Sun Dec  2 15:00:57 2018] 127.0.0.1:38946 [200]: /static/index/image/72f082025aafa40f9205eb43a364034f79f01968.jpg
