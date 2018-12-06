@@ -12,6 +12,7 @@ class Index extends Controller
 
     public function welcome()
     {
+
         return "欢迎来到o2o首页";
     }
 }

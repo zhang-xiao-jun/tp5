@@ -4,6 +4,7 @@ namespace app\admin\controller;
 
 use think\Controller;
 use think\Request;
+use app\admin\validate\Category as CategoryValidate;
 
 class Category extends Controller
 {
@@ -14,7 +15,11 @@ class Category extends Controller
      */
     public function index()
     {
-        return $this->fetch();
+       $data = model('Category')->index();
+       $this->assign([
+           'data'=>$data
+       ]);
+       return $this->fetch();
     }
 
     /**
@@ -36,19 +41,22 @@ class Category extends Controller
     public function save()
     {
         $data = input('post.');
-        var_dump($data);
+        $validate = new CategoryValidate;
+        if(!$validate->scene('add')->check($data)) {
+            $this->error($validate->getError());
+        }
+
+        //把数据提交给model层处理
+        $result = model('Category')->add($data);
+
+        if($result >= 1){
+            return $this->success('添加成功');
+        } else {
+            return $this->error('添加失败');
+        }
     }
 
-    /**
-     * 显示指定的资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function read($id)
-    {
-        //
-    }
+
 
     /**
      * 显示编辑资源表单页.
@@ -81,6 +89,8 @@ class Category extends Controller
      */
     public function delete($id)
     {
-        //
+        $id = input('post.id');
+        echo $id;
+
     }
 }
