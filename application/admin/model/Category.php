@@ -14,15 +14,28 @@ class Category extends Model
                 ->insertGetId($data);
     }
 
-    public function index ()
+    public function index ($pid = 0)
     {
         $map = [
-            'status'=>1
+            'status'=>1,
+            'parent_id'=>$pid
         ];
         $order = ['id' =>'desc'];
 
-        return $this
-                ->where($map)
+        //paginate() tp5 内置分页 参数为每页显示的条数
+        $res = $this->where($map)
+                ->order($order)
+                ->paginate(1);
+        return $res;
+    }
+
+    public function add_show ()
+    {
+        $map = [
+          'parent_id'=>0
+        ];
+        $order = ['listorder asc'];
+        return $this->where($map)
                 ->order($order)
                 ->select();
     }

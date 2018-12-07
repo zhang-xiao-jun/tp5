@@ -8,18 +8,31 @@ use app\admin\validate\Category as CategoryValidate;
 
 class Category extends Controller
 {
+
+    private $obj;
+
+    public function initialize()
+    {
+        $this->obj = model('Category');
+    }
+
     /**
      * 首页
      *
-     * @return \think\Response
+     * @return \think\Responses
      */
     public function index()
     {
-       $data = model('Category')->index();
-       $this->assign([
-           'data'=>$data
-       ]);
-       return $this->fetch();
+        //input 三个参数 值 默认值 类型
+        $pid = input('parent_id',0,'intval');
+        $data = $this->obj->index($pid);
+        $page = $data->render();
+
+        $this->assign([
+           'data'=>$data,
+            'page'=>$page
+        ]);
+        return $this->fetch();
     }
 
     /**
@@ -29,6 +42,10 @@ class Category extends Controller
      */
     public function add ()
     {
+        $data = $this->obj->add_show();
+        $this->assign([
+            'data'=>$data
+        ]);
         return $this->fetch();
     }
 
@@ -47,7 +64,7 @@ class Category extends Controller
         }
 
         //把数据提交给model层处理
-        $result = model('Category')->add($data);
+        $result = $this->obj->add($data);
 
         if($result >= 1){
             return $this->success('添加成功');
