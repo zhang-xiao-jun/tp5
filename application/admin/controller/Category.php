@@ -28,12 +28,12 @@ class Category extends Controller
         $pid = input('parent_id',0,'intval');
         $data = $this->obj->index($pid);
 
-       /* $p = new \page\Page($data,10);*/
+        $p = new \page\Page($data,10);
 
 
         $this->assign([
-           'data'=>$data
-            /*'page'=>$p*/
+           'data'=>$data,
+            'page'=>$p
         ]);
         return $this->fetch();
     }
@@ -48,7 +48,8 @@ class Category extends Controller
     {
         $data = $this->obj->add_show();
         $this->assign([
-            'data'=>$data
+            'data'=>$data,
+            'cate_type'=>10
         ]);
         return $this->fetch();
     }
@@ -81,17 +82,33 @@ class Category extends Controller
 
 
     /**
+     * admin-controller-category-0004
      * 显示编辑资源表单页.
      *
      * @param  int  $id
      * @return \think\Response
      */
-    public function edit($id)
+    public function edit($id = 0)
     {
-        //
+
+        if(intval($id) < 1) {
+            $this->error('参数不合法');
+        }
+
+        $data = $this->obj->get_one_info($id);
+
+        $this->assign([
+            'data'=>$data,
+            'cate_type'=>20
+        ]);
+
+        $this->fetch('category/add');
+
+
     }
 
     /**
+     * admin-controller-category-0005
      * 保存更新的资源
      *
      * @param  \think\Request  $request
@@ -104,15 +121,24 @@ class Category extends Controller
     }
 
     /**
+     * admin-controller-category-0006
      * 删除指定资源
      *
      * @param  int  $id
      * @return \think\Response
      */
-    public function delete($id)
+    public function delete($id = 0)
     {
-        $id = input('post.id');
-        echo $id;
+        if(intval($id) < 1) {
+            $this->error('参数不合法');
+        }
+        $res = $this->obj->dels($id);
+
+        if($res){
+            $this->success('删除成功');
+        } else {
+            $this->error('删除失败');
+        }
 
     }
 }

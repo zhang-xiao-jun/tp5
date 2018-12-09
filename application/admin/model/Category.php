@@ -18,25 +18,44 @@ class Category extends Model
     {
         $map = [
             'status'=>1,
-            'parent_id'=>$pid
+            'parent_id'=>$pid,
+            'del_status'=>0
         ];
-        $order = ['id' =>'desc'];
+        $order = ['listorder' =>'asc'];
 
         //paginate() tp5 内置分页 参数为每页显示的条数
         $res = $this->where($map)
                 ->order($order)
-                ->paginate(2);
+                ->column('*','id');;
         return $res;
     }
 
     public function add_show ()
     {
         $map = [
-          'parent_id'=>0
+          'parent_id'=>0,
+          'del_status'=>0
         ];
         $order = ['listorder asc'];
         return $this->where($map)
                 ->order($order)
                 ->select();
+    }
+
+    public function get_one_info ($id)
+    {
+        $map['id'] = $id;
+        $data = $this->where($map)
+                ->find();
+        return $data;
+    }
+
+    public function dels($id)
+    {
+        $map['id'] = $id;
+        $data['del_status'] = $id;
+        $result = $this->where($map)
+                     ->update($data);
+        return $result;
     }
 }

@@ -38,7 +38,7 @@ class Category extends Validate
 
     //设置验证场景
     protected $scene = [
-        'add'=>['name','parent_id'],
+        'add'=>['name','parent_id','listorder'],
         'lostorder'=>['lostorder'],
         'edit'=>['name','parent_id','status','listorder'],
     ];
