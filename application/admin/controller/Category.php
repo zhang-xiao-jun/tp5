@@ -17,6 +17,7 @@ class Category extends Controller
     }
 
     /**
+     * admin-controller-category-0001
      * 首页
      *
      * @return \think\Responses
@@ -26,16 +27,19 @@ class Category extends Controller
         //input 三个参数 值 默认值 类型
         $pid = input('parent_id',0,'intval');
         $data = $this->obj->index($pid);
-        $page = $data->render();
+
+       /* $p = new \page\Page($data,10);*/
+
 
         $this->assign([
-           'data'=>$data,
-            'page'=>$page
+           'data'=>$data
+            /*'page'=>$p*/
         ]);
         return $this->fetch();
     }
 
     /**
+     * admin-controller-category-0002
      * 新增
      *
      * @return \think\Response
@@ -50,6 +54,7 @@ class Category extends Controller
     }
 
     /**
+     * admin-controller-category-0003
      * 保存新建的资源
      *
      * @param  \think\Request  $request

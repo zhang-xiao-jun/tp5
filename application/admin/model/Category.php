@@ -25,7 +25,7 @@ class Category extends Model
         //paginate() tp5 内置分页 参数为每页显示的条数
         $res = $this->where($map)
                 ->order($order)
-                ->paginate(1);
+                ->paginate(2);
         return $res;
     }
 
