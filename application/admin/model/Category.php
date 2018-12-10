@@ -17,7 +17,6 @@ class Category extends Model
     public function index ($pid = 0)
     {
         $map = [
-            'status'=>1,
             'parent_id'=>$pid,
             'del_status'=>0
         ];
@@ -76,5 +75,24 @@ class Category extends Model
 
         $result = $this->update($data,['id'=>$data['edit_id']]);
         return $result;
+    }
+
+    public function change_status($id,$status)
+    {
+        $where['id'] = $id;
+        if($status == 1){
+            $data['status'] = -1;
+        } else {
+            $data['status'] = 1;
+        }
+
+        return $this->where($where)->update($data);
+    }
+
+    public function change_sort($id,$val) {
+        $where['id'] = $id;
+        $data['listorder'] = $val;
+
+        return $this->where($where)->update($data);
     }
 }

@@ -24,10 +24,12 @@
 						<td><input name="" type="checkbox" value="">{$vo.name}</td>
 						<td>{$vo.id}</td>
 						<td>{$vo.parent_id}</td>
-						<td class="text-c">{$vo.listorder}</td>
+						<td class="text-c" >
+							<input size="1" name="listorder" attr_id="{$vo.id}" value="{$vo.listorder}" onblur="change_sort({$vo['id']},this.value)" />
+						</td>
 						<td>{$vo.created_time}</td>
 						<td class="td-status">
-							<a  href="#"  onclick="change_status('12','34')"  title="点击修改状态">
+							<a    onclick="change_status({$vo.id},{$vo.status})"  title="点击修改状态">
 								{$vo.status|status|raw}
 							</a>
 						</td>
@@ -51,28 +53,43 @@
 
 <script>
 
-	$(function(){
-        function change_status($id,$status){
-            alert(1234);die();
+
+	    change_status = function($id,$status){
             var id = $id;
             var status = $status;
-            alert($id);return false;
 
             $.ajax({
                 'type':'post',
                 'url':'__ADMIN__/Category/change_status',
                 'dataType':'json',
-                'data':'',
+                'data':{id:id,status:status},
                 'success':function ($data) {
                     if($data.code == 1){
-                        alert('执行成功');
+                        window.location.reload();
+                    } else {
+                        layer_show($data.msg);
+                    }
+                }
+            })
+		}
+
+		change_sort = function($id,$val) {
+	        var id = $id;
+	        var val = $val;
+            $.ajax({
+                'type':'post',
+                'url':'__ADMIN__/Category/change_sort',
+                'dataType':'json',
+                'data':{id:id,val:val},
+                'success':function ($data) {
+                    if($data.code == 1){
+                        location.href = $data.data;
                     } else {
                         alert($data.msg);
                     }
                 }
             })
-        }
-	});
+		}
 
 
 </script>

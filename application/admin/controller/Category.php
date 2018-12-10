@@ -185,6 +185,45 @@ class Category extends Controller
         $id     = input('post.id',0,'intval');
         $status = input('post.status');
 
-        get_prints_r($status);die();
+        $result = $this->obj->change_status($id,$status);
+        if($request){
+            $this->success('状态修改成功','','',1);
+        } else {
+            $this->error('状态修改失败');
+        }
+
+    }
+
+    /**
+     * admin-controller-category-0008
+     * 修改排序
+     *
+     */
+    public function change_sort (Request $request)
+    {
+        if(!$request->isPost()) {
+            $this->error('请求参数不合法');
+        }
+
+        if(!$request->isAjax()) {
+            $this->error('请求参数不合法');
+        }
+
+        $id  = input('post.id','0','intval');
+        $val = input('post.val','0','intval');
+
+        if($id < 1 ){
+            $this->error('参数不合法');
+        }
+
+        $result = $this->obj->change_sort($id,$val);
+
+        if($result) {
+            $this->result($_SERVER['HTTP_REFERER'],1,'修改成功');
+            /*$this->success('修改成功');*/
+        } else {
+            $this->error('修改失败');
+        }
+
     }
 }
