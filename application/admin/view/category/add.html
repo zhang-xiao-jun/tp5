@@ -2,14 +2,18 @@
 {include file="public/header" /}
 <body>
 <div class="page-container">
-	<form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="{:url('category/save')}">
+	{if condition="$cate_type eq 10"}
+		<form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="{:url('category/save')}">
+	{else/}
+		<form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="{:url('category/update')}">
+	{/if}
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>生活服务分类名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				{if condition="$cate_type eq 10"}
 					<input type="text" class="input-text" value="" placeholder="" id="name" name="name">
-				{else/}
-					<input type="text" class="input-text" value="" placeholder="" id="name" name="name" value="{$data.name}">
+				{elseif condition="$cate_type eq 20"}
+					<input type="text" class="input-text"  placeholder="" id="name" name="name" value="{$data.name}">
 				{/if}
 			</div>
 		</div>
@@ -17,12 +21,29 @@
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
-				<select name="parent_id" class="select">
-					<option value="0">一级分类</option>
-					{foreach $data as $k=>$v }
-						<option value="{$v.id}">{$v.name}</option>
-					{/foreach}
-				</select>
+					{if condition="$cate_type eq 10"}
+						<select name="parent_id" class="select">
+							<option value="0">一级分类</option>
+							{foreach $data as $k=>$v }
+								<option value="{$v.id}">{$v.name}</option>
+							{/foreach}
+						</select>
+					{else/}
+						<select name="parent_id" class="select">
+							{if condition="$data.parent_id eq 0" }
+								<option value="0" selected>一级分类</option>
+							{else/}
+								<option value="0">一级分类</option>
+							{/if}
+							{volist name="cate" id="vo"}
+								{if condition="$vo.id eq $data.parent_id"}
+									<option value="{$vo.id}" selected>{$vo.name}</option>
+								{else/}
+									<option value="{$vo.id}" >{$vo.name}</option>
+								{/if}
+							{/volist}
+						</select>
+					{/if}
 				</span>
 			</div>
 		</div>
@@ -30,14 +51,20 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>排序</label>
 			<div class="formControls col-xs-8 col-sm-9">
+				{if condition="$cate_type eq 10"}
 					<input type="text" class="input-text" value="" placeholder="必须为数字" id="listorder" name="listorder" >
+				{else/}
+					<input type="text" class="input-text"  placeholder="必须为数字" id="listorder" name="listorder" value="{$data.listorder}" >
+				{/if}
 			</div>
 		</div>
 		
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				{if condition="$cate_type eq 20"}
+					<input type="hidden" name="edit_id" value="{$data.id}" />
+				{/if}
 				<button  type="submit" class="btn btn-primary radius" ><i class="Hui-iconfont">&#xe632;</i> 保存</button>
-				
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>

@@ -95,14 +95,19 @@ class Category extends Controller
             $this->error('参数不合法');
         }
 
+
         $data = $this->obj->get_one_info($id);
+        /*get_prints_r($data['name'],1);*/
+
+        $cate = $this->obj->get_cate_info();
 
         $this->assign([
             'data'=>$data,
-            'cate_type'=>20
+            'cate_type'=>20,
+            'cate'=>$cate
         ]);
 
-        $this->fetch('category/add');
+        return $this->fetch('category/add');
 
 
     }
@@ -115,9 +120,31 @@ class Category extends Controller
      * @param  int  $id
      * @return \think\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        if(!$request->isPost()){
+            $this->error('请求参数不合法');
+        }
+
+        $data = input('post.');
+
+        if($data['edit_id'] < 1) {
+            $this->error('参数不合法');
+        }
+
+        $validate = new CategoryValidate;
+
+        if(!$validate->scene('edit')->check($data)){
+            $this->error($validate->getError());
+        }
+
+        $result = $this->obj->update_data($data);
+
+        if($result !== false) { //update 返回的是受影响的行数,数据无变化的时候为0
+            $this->success('修改成功');
+        } else {
+            $this->error('修改失败');
+        }
     }
 
     /**
@@ -140,5 +167,24 @@ class Category extends Controller
             $this->error('删除失败');
         }
 
+    }
+
+    /**
+     * admin-controller-category-0007
+     * 修改状态
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function change_status (Request $request)
+    {
+        if(!$request->isPost()){
+            $this->error('请求参数不合法');
+        }
+
+        $id     = input('post.id',0,'intval');
+        $status = input('post.status');
+
+        get_prints_r($status);die();
     }
 }

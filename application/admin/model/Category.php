@@ -50,12 +50,31 @@ class Category extends Model
         return $data;
     }
 
+    public function get_cate_info ()
+    {
+        $map = [
+            'del_status'=>0,
+            'parent_id'=>0
+        ];
+        return $this->where($map)
+                ->select();
+    }
+
     public function dels($id)
     {
         $map['id'] = $id;
         $data['del_status'] = $id;
         $result = $this->where($map)
                      ->update($data);
+        return $result;
+    }
+
+    public function update_data ($data)
+    {
+        /*$where['id'] = $data['edit_id'];
+        unset($data['edit_id']);*/
+
+        $result = $this->update($data,['id'=>$data['edit_id']]);
         return $result;
     }
 }

@@ -16,7 +16,8 @@ class Category extends Validate
 	    'name'=>'require|max:25',
         'parent_id'=>'number|between:0,120',
         'status'=>'number|in:-1,0,1',
-        'listorder'=>'number'
+        'listorder'=>'number',
+        'edit_id'=>'number'
 
     ];
     
@@ -33,13 +34,13 @@ class Category extends Validate
         'parent_id.between'=>'分类类型的范围必须为0-120',
         'status.number'=>'状态码必须为数字',
         'status.in'=>'状态码必须在-1,0,1之间',
-        'listorder'=>'排序必须为数字'
+        'listorder.number'=>'排序必须为数字',
+        'edit_id.number'=>'必须为数字'
     ];
 
     //设置验证场景
     protected $scene = [
         'add'=>['name','parent_id','listorder'],
-        'lostorder'=>['lostorder'],
-        'edit'=>['name','parent_id','status','listorder'],
+        'edit'=>['name','parent_id','listorder'],
     ];
 }
