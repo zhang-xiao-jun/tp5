@@ -3,17 +3,26 @@ namespace app\admin\controller;
 
 use think\Controller;
 use lib\map\Map;
+use think\facade\Config;
 
 class Index extends Controller
 {
     public function index()
     {
-        $map = new Map();
+        $map_config = Config::get('config.baidu_map');
+
+        $map = new Map($map_config['ak']);
 
         $address = '北京市海淀区上地十街10号';
 
-        $data = $map->get_addr_info($address);
-        get_prints_r($data,1);
+        $result = $map->get_static_img($address,11,280,140);
+
+        $this->assign([
+            'src'=>$result
+        ]);
+      /*  get_prints_r($data->result->location);die();
+
+        get_prints_r($data_arr,1);*/
 
       return $this->fetch();
     }

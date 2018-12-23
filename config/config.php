@@ -12,4 +12,9 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
         ],
+
+        //百度地图map ak值
+        'baidu_map'=>[
+          'ak'=>'yhZzqMNX2orGbHsVcVoo2x2wPIn6rXMP'
+        ],
     ];
