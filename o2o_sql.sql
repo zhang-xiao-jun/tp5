@@ -5,6 +5,7 @@ create table  if not exists `o2o_category`(
   `parent_id` int(10) unsigned not null default 0,
   `listorder` int(8) unsigned not null default 0,
   `status` tinyint(2) not null default 0,
+  `del_status` int(11) not null default 0 comment '删除状态，0为未删除，其余为已删除，值为id',
   `created_time` timestamp default current_timestamp,
   `updated_time` timestamp default current_timestamp on update current_timestamp,
   primary key(`id`),

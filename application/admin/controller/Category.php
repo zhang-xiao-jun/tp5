@@ -28,12 +28,12 @@ class Category extends Controller
         $pid = input('parent_id',0,'intval');
         $data = $this->obj->index($pid);
 
-        $p = new \page\Page($data,10);
+      /*  $p = new \page\Page($data,10);*/
 
 
         $this->assign([
-           'data'=>$data,
-            'page'=>$p
+           'data'=>$data
+            /*'page'=>$p*/
         ]);
         return $this->fetch();
     }
