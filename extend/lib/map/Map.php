@@ -38,10 +38,9 @@ class Map
         $url .= '&width='.$width;
         $url .= '&height='.$height;
 
-        $res = $this->curlInfo($url,1);
-
-        return $res;
+        return $url;
     }
+
 
     //type 1 get; 2 post;
     public function curlInfo ($url,$type)

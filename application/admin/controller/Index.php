@@ -15,7 +15,7 @@ class Index extends Controller
 
         $address = '北京市海淀区上地十街10号';
 
-        $result = $map->get_static_img($address,11,280,140);
+        $result = $map->get_static_img($address,8,400,200);
 
         $this->assign([
             'src'=>$result
