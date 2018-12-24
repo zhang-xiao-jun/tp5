@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
-require 'vendor/autoload.php';
+require '../../../vendor/autoload.php';
 
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 try {
@@ -14,25 +14,26 @@ try {
     $mail->SMTPDebug = 1;
     // 使用smtp鉴权方式发送邮件
     $mail->isSMTP();
-    //  smtp需要鉴权 这个必须是true
+    //  smtp需要鉴权 这个必须是trues
     $mail->SMTPAuth = true;
-    // 链接qq域名邮箱的服务器地址
-    $mail->Host = 'smtp.qq.com';
+    // 服务器地址
+    $mail->Host = '';
     // 设置ssl连接smtp服务器的远程服务器端口号
     $mail->Port = 587;
     // 设置发送的邮件的编码
     $mail->CharSet = 'UTF-8';
    // smtp登录的账号 QQ邮箱即可
-    $mail->Username = '1175794078@qq.com';                 // SMTP username
+    $mail->Username = '';                 // SMTP username
     // smtp登录的密码 使用生成的授权码
-    $mail->Password = 'secret';                           // SMTP password
-    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Password = '';                           // SMTP password
+    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
 
 
     //Recipients
-    $mail->setFrom('1175794078@qq.com', 'zhangjun');
-    $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
-    $mail->addAddress('ellen@example.com');               // Name is optional
+    $mail->setFrom('', 'zhangjun');
+    //发送对象
+    $mail->addAddress('', 'Joe User');     // Add a recipient
+    $mail->addAddress('ellen@example.com');              // Name is optional
     $mail->addReplyTo('info@example.com', 'Information');
     $mail->addCC('cc@example.com');
     $mail->addBCC('bcc@example.com');
