@@ -17,4 +17,10 @@ return [
         'baidu_map'=>[
           'ak'=>'yhZzqMNX2orGbHsVcVoo2x2wPIn6rXMP'
         ],
+
+        //邮箱配置
+        'mail_config'=>[
+          'Username'=>'',
+          'Password'=>''
+        ],
     ];
