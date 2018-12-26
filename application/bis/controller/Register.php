@@ -34,6 +34,25 @@ class Register extends Controller
         return $this->fetch();
     }
 
+
+    //得到城市信息
+    public function get_city ()
+    {
+        $provice_id = input('post.provice_id','0','intval');
+
+        if($provice_id <= 0) {
+            $this->error('参数不合法');
+        }
+
+        $city = $this->model->get_city($provice_id);
+        if($city) {
+            $this->success('请求成功','',$city);
+        } else {
+            $this->error('请求失败','');
+        }
+
+    }
+
     /**
      * 显示创建资源表单页.
      *
